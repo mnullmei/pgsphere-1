@@ -259,7 +259,7 @@ Stylesheet//EN" CDATA DSSSL>
 
 (define %graphic-extensions%
   ;; graphic extensions allowed
-  '("jpg" "jpeg"))
+  '("jpg" "jpeg" "png"))
 
 (define %graphic-default-extension% 
   "jpg")

@@ -47,7 +47,7 @@ html  : pg_sphere.xml $(ALLSGML) pg_sphere.dsl
 	@rm -rf html
 	mkdir html
 	mkdir html/img
-	cp img/*.jpg html/img
+	cp img/*.jpg img/*.png html/img
 	cp pg_sphere.css html
 	$(JADE) $(JADEFLAGS) $(SGMLINCLUDE) $(CATALOG) -b UTF-8 -d pg_sphere.dsl -i html  -t sgml $(XMLDCL) $<
 	mv *.html html

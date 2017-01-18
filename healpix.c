@@ -7,6 +7,15 @@
 #include <chealpix.h>
 #include <math.h>
 
+PG_FUNCTION_INFO_V1(pg_nside2order);
+PG_FUNCTION_INFO_V1(pg_order2nside);
+PG_FUNCTION_INFO_V1(pg_nside2npix);
+PG_FUNCTION_INFO_V1(pg_npix2nside);
+PG_FUNCTION_INFO_V1(healpix_nest);
+PG_FUNCTION_INFO_V1(healpix_ring);
+PG_FUNCTION_INFO_V1(inv_healpix_nest);
+PG_FUNCTION_INFO_V1(inv_healpix_ring);
+
 static int ilog2(hpint64 x)
 {
 	int log = 0;
@@ -30,7 +39,7 @@ static int order_invalid(int order)
 
 static int nside_invalid(hpint64 nside)
 {
-	return (nside <= 0 || nside - 1 & nside || order_invalid(ilog2(nside)));
+	return (nside <= 0 || (nside - 1) & nside || order_invalid(ilog2(nside)));
 }
 
 static hpint64 c_nside(int order)
@@ -39,7 +48,6 @@ static hpint64 c_nside(int order)
 	return one_bit << order;
 }
 
-PG_FUNCTION_INFO_V1(pg_nside2order);
 Datum pg_nside2order(PG_FUNCTION_ARGS)
 {
 	hpint64 nside = PG_GETARG_INT64(0);
@@ -48,7 +56,6 @@ Datum pg_nside2order(PG_FUNCTION_ARGS)
 	PG_RETURN_INT32(ilog2(nside));
 }
 
-PG_FUNCTION_INFO_V1(pg_order2nside);
 Datum pg_order2nside(PG_FUNCTION_ARGS)
 {
 	int32 order = PG_GETARG_INT32(0);
@@ -57,7 +64,6 @@ Datum pg_order2nside(PG_FUNCTION_ARGS)
 	PG_RETURN_INT64(c_nside(order));
 }
 
-PG_FUNCTION_INFO_V1(pg_nside2npix);
 Datum pg_nside2npix(PG_FUNCTION_ARGS)
 {
 	hpint64 nside = PG_GETARG_INT64(0);
@@ -66,7 +72,6 @@ Datum pg_nside2npix(PG_FUNCTION_ARGS)
 	PG_RETURN_INT64(12 * nside * nside);
 }
 
-PG_FUNCTION_INFO_V1(pg_npix2nside);
 Datum pg_npix2nside(PG_FUNCTION_ARGS)
 {
 	hpint64 npix = PG_GETARG_INT64(0);
@@ -89,7 +94,6 @@ static double conv_theta(double x)
 	return y;
 }
 
-PG_FUNCTION_INFO_V1(healpix_nest);
 Datum healpix_nest(PG_FUNCTION_ARGS)
 {
 	int32 order = PG_GETARG_INT32(0);
@@ -101,7 +105,6 @@ Datum healpix_nest(PG_FUNCTION_ARGS)
 	PG_RETURN_INT64(i);
 }
 
-PG_FUNCTION_INFO_V1(healpix_ring);
 Datum healpix_ring(PG_FUNCTION_ARGS)
 {
 	int32 order = PG_GETARG_INT32(0);
@@ -114,7 +117,6 @@ Datum healpix_ring(PG_FUNCTION_ARGS)
 }
 
 
-PG_FUNCTION_INFO_V1(inv_healpix_nest);
 Datum inv_healpix_nest(PG_FUNCTION_ARGS)
 {
 	int32 order = PG_GETARG_INT32(0);
@@ -128,7 +130,6 @@ Datum inv_healpix_nest(PG_FUNCTION_ARGS)
 	PG_RETURN_POINTER(p);
 }
 
-PG_FUNCTION_INFO_V1(inv_healpix_ring);
 Datum inv_healpix_ring(PG_FUNCTION_ARGS)
 {
 	int32 order = PG_GETARG_INT32(0);

@@ -19,14 +19,14 @@ RETURNS bigint
 AS 'MODULE_PATHNAME', 'pg_nside2npix'
 LANGUAGE C IMMUTABLE STRICT;
 COMMENT ON FUNCTION nside2npix(bigint) IS
-'returns the number of healpix elements for the nside parameter, 12 * nside ^ 2, NULL for invalid input';
+'returns 12 * nside ^ 2, the number of healpix elements for the nside parameter, NULL for invalid input';
 
 CREATE FUNCTION npix2nside(bigint)
 RETURNS bigint
 AS 'MODULE_PATHNAME', 'pg_npix2nside'
 LANGUAGE C IMMUTABLE STRICT;
 COMMENT ON FUNCTION npix2nside(bigint) IS
-'returns the nside parameter from the number of healpix elements npix, NULL for invalid input';
+'returns the nside parameter correspondig to the number of healpix elements, NULL for invalid input';
 
 CREATE FUNCTION healpix_nest(integer, spoint)
 RETURNS bigint
@@ -46,26 +46,26 @@ CREATE FUNCTION centre_of_healpix_nest(integer, bigint)
 RETURNS spoint
 AS 'MODULE_PATHNAME', 'inv_healpix_nest'
 LANGUAGE C IMMUTABLE STRICT;
-COMMENT ON FUNCTION healpix_nest(integer, spoint) IS
+COMMENT ON FUNCTION centre_of_healpix_nest(integer, bigint) IS
 'spherical point designating the centre of a nested healpix element for the specified integer level (first argument)';
 
 CREATE FUNCTION centre_of_healpix_ring(integer, bigint)
 RETURNS spoint
 AS 'MODULE_PATHNAME', 'inv_healpix_ring'
 LANGUAGE C IMMUTABLE STRICT;
-COMMENT ON FUNCTION healpix_ring(integer, spoint) IS
+COMMENT ON FUNCTION centre_of_healpix_ring(integer, bigint) IS
 'spherical point designating the centre of a ring healpix element for the specified integer level (first argument)';
 
 CREATE FUNCTION center_of_healpix_nest(integer, bigint)
 RETURNS spoint
 AS 'MODULE_PATHNAME', 'inv_healpix_nest'
 LANGUAGE C IMMUTABLE STRICT;
-COMMENT ON FUNCTION healpix_nest(integer, spoint) IS
+COMMENT ON FUNCTION center_of_healpix_nest(integer, bigint) IS
 'spherical point designating the center of a nested healpix element for the specified integer level (first argument)';
 
 CREATE FUNCTION center_of_healpix_ring(integer, bigint)
 RETURNS spoint
 AS 'MODULE_PATHNAME', 'inv_healpix_ring'
 LANGUAGE C IMMUTABLE STRICT;
-COMMENT ON FUNCTION healpix_ring(integer, spoint) IS
+COMMENT ON FUNCTION center_of_healpix_ring(integer, bigint) IS
 'spherical point designating the center of a ring healpix element for the specified integer level (first argument)';

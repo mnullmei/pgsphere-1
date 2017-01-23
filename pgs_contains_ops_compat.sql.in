@@ -1116,7 +1116,7 @@ CREATE OPERATOR !~ (
    LEFTARG    = spoly,
    RIGHTARG   = sellipse,
    PROCEDURE  = spoly_contains_ellipse_neg,
-   COMMUTATOR = '!>@',
+   COMMUTATOR = '!@',
    NEGATOR    = '~',
    RESTRICT   = contsel,
    JOIN       = contjoinsel

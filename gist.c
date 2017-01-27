@@ -595,6 +595,24 @@ g_spoint2_consistent(PG_FUNCTION_ARGS)
 				case 16:
 					SCK_INTERLEAVE(SBOX, spherebox_gen_key, 0);
 					break;
+				case 37:
+					SCK_INTERLEAVE(SCIRCLE, spherecircle_gen_key, 0);
+					break;
+				case 38:
+					SCK_INTERLEAVE(SLine, sphereline_gen_key, 0);
+					break;
+				case 39:
+					SCK_INTERLEAVE(SPATH, spherepath_gen_key, 0);
+					break;
+				case 40:
+					SCK_INTERLEAVE(SPOLY, spherepoly_gen_key, 0);
+					break;
+				case 41:
+					SCK_INTERLEAVE(SELLIPSE, sphereellipse_gen_key, 0);
+					break;
+				case 42:
+					SCK_INTERLEAVE(SBOX, spherebox_gen_key, 0);
+					break;
 			}
 			switch (strategy)
 			{
@@ -635,6 +653,24 @@ g_spoint2_consistent(PG_FUNCTION_ARGS)
 					result = sellipse_cont_point((SELLIPSE *) query, &point);
 					break;
 				case 16:
+					result = sbox_cont_point((SBOX *) query, &point);
+					break;
+				case 37:
+					result = spoint_in_circle(&point, (SCIRCLE *) query);
+					break;
+				case 38:
+					result = spoint_at_sline(&point, (SLine *) query);
+					break;
+				case 39:
+					result = spath_cont_point((SPATH *) query, &point);
+					break;
+				case 40:
+					result = spoly_contains_point((SPOLY *) query, &point);
+					break;
+				case 41:
+					result = sellipse_cont_point((SELLIPSE *) query, &point);
+					break;
+				case 42:
 					result = sbox_cont_point((SBOX *) query, &point);
 					break;
 			}

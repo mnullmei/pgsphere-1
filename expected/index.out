@@ -62,13 +62,25 @@ CREATE INDEX cccidx ON spheretmp3 USING gist ( b );
 CREATE INDEX dddidx ON spheretmp4 USING gist ( l );
 --with idx
 SET enable_seqscan = OFF ;
-SELECT count(*) FROM spheretmp1 WHERE p @ scircle '<(1,1),0.3>'  ;
+SELECT count(*) FROM spheretmp1 WHERE p @ scircle '<(1,1),0.3>';
  count 
 -------
     32
 (1 row)
 
-SELECT count(*) FROM spheretmp1b WHERE p @ scircle '<(1,1),0.3>'  ;
+SELECT count(*) FROM spheretmp1b WHERE p @ scircle '<(1,1),0.3>';
+ count 
+-------
+    32
+(1 row)
+
+SELECT count(*) FROM spheretmp1 WHERE p <@ scircle '<(1,1),0.3>';
+ count 
+-------
+    32
+(1 row)
+
+SELECT count(*) FROM spheretmp1b WHERE p <@ scircle '<(1,1),0.3>';
  count 
 -------
     32

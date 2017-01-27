@@ -39,8 +39,10 @@ CREATE INDEX dddidx ON spheretmp4 USING gist ( l );
 
 SET enable_seqscan = OFF ;
 
-SELECT count(*) FROM spheretmp1 WHERE p @ scircle '<(1,1),0.3>'  ;
-SELECT count(*) FROM spheretmp1b WHERE p @ scircle '<(1,1),0.3>'  ;
+SELECT count(*) FROM spheretmp1 WHERE p @ scircle '<(1,1),0.3>';
+SELECT count(*) FROM spheretmp1b WHERE p @ scircle '<(1,1),0.3>';
+SELECT count(*) FROM spheretmp1 WHERE p <@ scircle '<(1,1),0.3>';
+SELECT count(*) FROM spheretmp1b WHERE p <@ scircle '<(1,1),0.3>';
 
 SELECT count(*) FROM spheretmp1 WHERE p = spoint '(3.09 , 1.25)' ;
 SELECT count(*) FROM spheretmp1b WHERE p = spoint '(3.09 , 1.25)' ;

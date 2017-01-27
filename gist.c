@@ -14,7 +14,7 @@ PG_FUNCTION_INFO_V1(spherekey_out);
 PG_FUNCTION_INFO_V1(g_spherekey_decompress);
 PG_FUNCTION_INFO_V1(g_scircle_compress);
 PG_FUNCTION_INFO_V1(g_spoint_compress);
-PG_FUNCTION_INFO_V1(g_spoint2_compress);
+PG_FUNCTION_INFO_V1(g_spoint3_compress);
 PG_FUNCTION_INFO_V1(g_sline_compress);
 PG_FUNCTION_INFO_V1(g_spath_compress);
 PG_FUNCTION_INFO_V1(g_spoly_compress);
@@ -22,10 +22,10 @@ PG_FUNCTION_INFO_V1(g_sellipse_compress);
 PG_FUNCTION_INFO_V1(g_sbox_compress);
 PG_FUNCTION_INFO_V1(g_spherekey_union);
 PG_FUNCTION_INFO_V1(g_spherekey_same);
-PG_FUNCTION_INFO_V1(g_spoint2_union);
-PG_FUNCTION_INFO_V1(g_spoint2_same);
+PG_FUNCTION_INFO_V1(g_spoint3_union);
+PG_FUNCTION_INFO_V1(g_spoint3_same);
 PG_FUNCTION_INFO_V1(g_spoint_consistent);
-PG_FUNCTION_INFO_V1(g_spoint2_consistent);
+PG_FUNCTION_INFO_V1(g_spoint3_consistent);
 PG_FUNCTION_INFO_V1(g_scircle_consistent);
 PG_FUNCTION_INFO_V1(g_sline_consistent);
 PG_FUNCTION_INFO_V1(g_spath_consistent);
@@ -34,9 +34,9 @@ PG_FUNCTION_INFO_V1(g_sellipse_consistent);
 PG_FUNCTION_INFO_V1(g_sbox_consistent);
 PG_FUNCTION_INFO_V1(g_spherekey_penalty);
 PG_FUNCTION_INFO_V1(g_spherekey_picksplit);
-PG_FUNCTION_INFO_V1(g_spoint2_penalty);
-PG_FUNCTION_INFO_V1(g_spoint2_picksplit);
-PG_FUNCTION_INFO_V1(g_spoint2_distance);
+PG_FUNCTION_INFO_V1(g_spoint3_penalty);
+PG_FUNCTION_INFO_V1(g_spoint3_picksplit);
+PG_FUNCTION_INFO_V1(g_spoint3_distance);
 
  /*
   * Returns the relationship between two keys as PGS_KEY_REL.
@@ -276,7 +276,7 @@ g_sbox_compress(PG_FUNCTION_ARGS)
 }
 
 Datum
-g_spoint2_compress(PG_FUNCTION_ARGS)
+g_spoint3_compress(PG_FUNCTION_ARGS)
 {
 	GISTENTRY  *entry = (GISTENTRY *) PG_GETARG_POINTER(0);
 	GISTENTRY  *retval;
@@ -331,7 +331,7 @@ g_spherekey_union(PG_FUNCTION_ARGS)
 }
 
 Datum
-g_spoint2_union(PG_FUNCTION_ARGS)
+g_spoint3_union(PG_FUNCTION_ARGS)
 {
 	GistEntryVector	   *entryvec = (GistEntryVector *) PG_GETARG_POINTER(0);
 	int				   *sizep = (int *) PG_GETARG_POINTER(1);
@@ -399,7 +399,7 @@ g_spherekey_same(PG_FUNCTION_ARGS)
 }
 
 Datum
-g_spoint2_same(PG_FUNCTION_ARGS)
+g_spoint3_same(PG_FUNCTION_ARGS)
 {
 	GiSTSPointKey  *key1 = (GiSTSPointKey *) PG_GETARG_POINTER(0);
 	GiSTSPointKey  *key2 = (GiSTSPointKey *) PG_GETARG_POINTER(1);
@@ -548,7 +548,7 @@ g_spoint_consistent(PG_FUNCTION_ARGS)
 }
 
 Datum
-g_spoint2_consistent(PG_FUNCTION_ARGS)
+g_spoint3_consistent(PG_FUNCTION_ARGS)
 {
 	GISTENTRY  *entry = (GISTENTRY *) PG_GETARG_POINTER(0);
 	void	   *query = (void *) PG_GETARG_POINTER(1);
@@ -681,7 +681,7 @@ g_spoint2_consistent(PG_FUNCTION_ARGS)
 }
 
 Datum
-g_spoint2_distance(PG_FUNCTION_ARGS)
+g_spoint3_distance(PG_FUNCTION_ARGS)
 {
 	GISTENTRY  *entry = (GISTENTRY *) PG_GETARG_POINTER(0);
 	SPoint	   *query = (SPoint *) PG_GETARG_POINTER(1);
@@ -2263,7 +2263,7 @@ g_spherekey_picksplit(PG_FUNCTION_ARGS)
 }
 
 Datum
-g_spoint2_picksplit(PG_FUNCTION_ARGS)
+g_spoint3_picksplit(PG_FUNCTION_ARGS)
 {
 	GistEntryVector *entryvec = (GistEntryVector *) PG_GETARG_POINTER(0);
 	GIST_SPLITVEC *v = (GIST_SPLITVEC *) PG_GETARG_POINTER(1);
@@ -2351,7 +2351,7 @@ g_spherekey_penalty(PG_FUNCTION_ARGS)
 * We have to make panalty as fast as possible (offen called !)
 */
 Datum
-g_spoint2_penalty(PG_FUNCTION_ARGS)
+g_spoint3_penalty(PG_FUNCTION_ARGS)
 {
 	GISTENTRY  *origentry = (GISTENTRY *) PG_GETARG_POINTER(0);
 	GISTENTRY  *newentry = (GISTENTRY *) PG_GETARG_POINTER(1);

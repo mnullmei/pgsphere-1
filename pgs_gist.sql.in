@@ -165,7 +165,7 @@ CREATE FUNCTION g_spoint2_distance(internal, internal, int4, oid)
    AS 'MODULE_PATHNAME' , 'g_spoint2_distance'
    LANGUAGE 'c';   
 
-CREATE OPERATOR CLASS spoint2
+CREATE OPERATOR CLASS spoint3
    FOR TYPE spoint USING gist AS
    OPERATOR   1 = (spoint, spoint),
    OPERATOR  11 @ (spoint, scircle),

@@ -27,7 +27,7 @@ CREATE TABLE spheretmp1b AS TABLE spheretmp1;
 
 CREATE INDEX aaaidx ON spheretmp1 USING gist ( p );
 
-CREATE INDEX spoint2_x ON spheretmp1b USING gist (p spoint2);
+CREATE INDEX spoint3_idx ON spheretmp1b USING gist (p spoint3);
 
 CREATE INDEX bbbidx ON spheretmp2 USING gist ( c );
 

@@ -13,14 +13,27 @@
  */
 #define MAXCVALUE ( (1 << (8 * BPCKSIZE - 2)) - 1 )
 
+typedef struct /* dummy definition to get LEAF_KEY_SIZE always right */
+{
+	int32			vl_len_;
+	union
+	{
+		struct /* the compiler will probably insert 4 bytes of padding here */
+		{
+			float8	lat,
+					lng;
+		};
+	};
+} GiSTSPointKey_Leaf;
+
 typedef struct
 {
 	int32			vl_len_;
 	union
 	{
-		struct
+		struct /* the compiler will probably insert 4 bytes of padding here */
 		{
-			float4	lat,
+			float8	lat,
 					lng;
 		};
 		struct
@@ -30,8 +43,8 @@ typedef struct
 	};
 } GiSTSPointKey;
 
-#define INTERNAL_KEY_SIZE (VARHDRSZ + sizeof(int32) * 6)
-#define LEAF_KEY_SIZE (VARHDRSZ + sizeof(float4) * 2)
+#define INTERNAL_KEY_SIZE sizeof(GiSTSPointKey)
+#define LEAF_KEY_SIZE sizeof(GiSTSPointKey_Leaf)
 #define IS_LEAF(key) (VARSIZE(key) == LEAF_KEY_SIZE)
 #define ALLOC_LEAF_KEY(key) do { \
 	key = (GiSTSPointKey *)palloc0(LEAF_KEY_SIZE); \

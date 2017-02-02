@@ -8,6 +8,7 @@
 #include <chealpix.h>
 #include <math.h>
 
+PG_FUNCTION_INFO_V1(healpix_convert);
 PG_FUNCTION_INFO_V1(pg_nside2order);
 PG_FUNCTION_INFO_V1(pg_order2nside);
 PG_FUNCTION_INFO_V1(pg_nside2npix);
@@ -49,28 +50,81 @@ static hpint64 c_nside(int order)
 	return one_bit << order;
 }
 
+static hpint64 c_nside2npix(hpint64 nside)
+{
+	return 12 * nside * nside;
+}
+
+static hpint64 c_npix(int order)
+{
+	return c_nside2npix(c_nside(order));
+}
+
+static void check_order(int order)
+{
+	if (order_invalid(order))
+		ereport(ERROR,
+				(errcode(ERRCODE_NUMERIC_VALUE_OUT_OF_RANGE),
+				 errmsg("Healpix order out of valid range [0..29]")));
+}
+
+static void check_index(int order, hpint64 i)
+{
+	check_order(order);
+	if (i < 0 || i >= c_npix(order))
+		ereport(ERROR,
+				(errcode(ERRCODE_NUMERIC_VALUE_OUT_OF_RANGE),
+				 errmsg("Healpix index out of range"),
+				 errhint("Use nside2npix(order2nside(order)) to calculate"
+		 					" the respective limit\nfor Healpix indices.\n"
+							"Use healpix_convert(idx, from_order, to_order)"
+							" to move indices to another order.")));
+}
+
+static void check_nside(hpint64 nside)
+{
+	if (nside_invalid(nside))
+		ereport(ERROR,
+				(errcode(ERRCODE_NUMERIC_VALUE_OUT_OF_RANGE),
+				 errmsg("nside value invalid"),
+				 errhint("Valid nside values are only"
+							" order2nside(order),"
+							" for order in [0..29].")));
+}
+
+Datum healpix_convert(PG_FUNCTION_ARGS)
+{
+	hpint64 idx		 = PG_GETARG_INT64(0);
+	int32 from_order = PG_GETARG_INT32(1);
+	int32 to_order	 = PG_GETARG_INT32(2);
+	check_order(to_order);
+	check_index(from_order, idx);
+	if (from_order > to_order)
+		idx >>= (from_order - to_order) * 2;
+	else
+		idx <<= (to_order - from_order) * 2;
+	PG_RETURN_INT64(idx);
+}
+
 Datum pg_nside2order(PG_FUNCTION_ARGS)
 {
 	hpint64 nside = PG_GETARG_INT64(0);
-	if (nside_invalid(nside))
-		PG_RETURN_NULL();
+	check_nside(nside);
 	PG_RETURN_INT32(ilog2(nside));
 }
 
 Datum pg_order2nside(PG_FUNCTION_ARGS)
 {
 	int32 order = PG_GETARG_INT32(0);
-	if (order_invalid(order))
-		PG_RETURN_NULL();
+	check_order(order);
 	PG_RETURN_INT64(c_nside(order));
 }
 
 Datum pg_nside2npix(PG_FUNCTION_ARGS)
 {
 	hpint64 nside = PG_GETARG_INT64(0);
-	if (nside_invalid(nside))
-		PG_RETURN_NULL();
-	PG_RETURN_INT64(12 * nside * nside);
+	check_nside(nside);
+	PG_RETURN_INT64(c_nside2npix(nside));
 }
 
 Datum pg_npix2nside(PG_FUNCTION_ARGS)
@@ -78,10 +132,17 @@ Datum pg_npix2nside(PG_FUNCTION_ARGS)
 	hpint64 npix = PG_GETARG_INT64(0);
 	hpint64 nside;
 	if (npix < 12)
-		PG_RETURN_NULL();
+		ereport(ERROR,
+				(errcode(ERRCODE_NUMERIC_VALUE_OUT_OF_RANGE),
+				 errmsg("npix value must be at least 12")));
 	nside = floor(sqrt(npix * (1.0 / 12)) + 0.5);
 	if (nside_invalid(nside))
-		PG_RETURN_NULL();
+		ereport(ERROR,
+				(errcode(ERRCODE_NUMERIC_VALUE_OUT_OF_RANGE),
+				 errmsg("npix value invalid"),
+				 errhint("Valid npix values are only"
+							" nside2npix(order2nside(order)),"
+							" for order in [0..29].")));
 	PG_RETURN_INT64(nside);
 }
 
@@ -100,8 +161,7 @@ Datum healpix_nest(PG_FUNCTION_ARGS)
 	int32 order = PG_GETARG_INT32(0);
 	SPoint* p = (SPoint*) PG_GETARG_POINTER(1);
 	hpint64 i;
-	if (order_invalid(order))
-		PG_RETURN_NULL();
+	check_order(order);
 	ang2pix_nest64(c_nside(order), conv_theta(p->lat), p->lng, &i);
 	PG_RETURN_INT64(i);
 }
@@ -111,8 +171,7 @@ Datum healpix_ring(PG_FUNCTION_ARGS)
 	int32 order = PG_GETARG_INT32(0);
 	SPoint* p = (SPoint*) PG_GETARG_POINTER(1);
 	hpint64 i;
-	if (order_invalid(order))
-		PG_RETURN_NULL();
+	check_order(order);
 	ang2pix_ring64(c_nside(order), conv_theta(p->lat), p->lng, &i);
 	PG_RETURN_INT64(i);
 }
@@ -124,8 +183,7 @@ Datum inv_healpix_nest(PG_FUNCTION_ARGS)
 	hpint64 i = PG_GETARG_INT64(1);
 	double theta = 0;
 	SPoint* p = (SPoint*) palloc(sizeof(SPoint));
-	if (order_invalid(order))
-		PG_RETURN_NULL();
+	check_index(order, i);
 	pix2ang_nest64(c_nside(order), i, &theta, &p->lng);
 	p->lat = conv_theta(theta);
 	PG_RETURN_POINTER(p);
@@ -137,8 +195,7 @@ Datum inv_healpix_ring(PG_FUNCTION_ARGS)
 	hpint64 i = PG_GETARG_INT64(1);
 	double theta = 0;
 	SPoint* p = (SPoint*) palloc(sizeof(SPoint));
-	if (order_invalid(order))
-		PG_RETURN_NULL();
+	check_index(order, i);
 	pix2ang_ring64(c_nside(order), i, &theta, &p->lng);
 	p->lat = conv_theta(theta);
 	PG_RETURN_POINTER(p);

@@ -3,6 +3,7 @@
 
 /* function prototypes for the Healpix support functions */
 
+Datum healpix_convert(PG_FUNCTION_ARGS);
 Datum pg_nside2order(PG_FUNCTION_ARGS);
 Datum pg_order2nside(PG_FUNCTION_ARGS);
 Datum pg_nside2npix(PG_FUNCTION_ARGS);

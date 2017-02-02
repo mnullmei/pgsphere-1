@@ -3,6 +3,7 @@
 #include <catalog/pg_type.h>
 
 #include <point.h> /* SPoint */
+#include <pgs_healpix.h>
 
 #include <chealpix.h>
 #include <math.h>

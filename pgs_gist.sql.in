@@ -165,6 +165,11 @@ CREATE FUNCTION g_spoint3_distance(internal, internal, int4, oid)
    AS 'MODULE_PATHNAME' , 'g_spoint3_distance'
    LANGUAGE 'c';   
 
+CREATE FUNCTION g_spoint3_fetch(internal)
+   RETURNS internal
+   AS 'MODULE_PATHNAME', 'g_spoint3_fetch'
+   LANGUAGE 'c' with (isstrict);
+
 CREATE OPERATOR CLASS spoint3
    FOR TYPE spoint USING gist AS
    OPERATOR   1 = (spoint, spoint),

@@ -37,6 +37,7 @@ PG_FUNCTION_INFO_V1(g_spherekey_picksplit);
 PG_FUNCTION_INFO_V1(g_spoint3_penalty);
 PG_FUNCTION_INFO_V1(g_spoint3_picksplit);
 PG_FUNCTION_INFO_V1(g_spoint3_distance);
+PG_FUNCTION_INFO_V1(g_spoint3_fetch);
 
  /*
   * Returns the relationship between two keys as PGS_KEY_REL.
@@ -730,6 +731,24 @@ g_spoint3_distance(PG_FUNCTION_ARGS)
 
 		PG_RETURN_FLOAT8(sqrt(sum));
 	}
+}
+
+Datum
+g_spoint3_fetch(PG_FUNCTION_ARGS)
+{
+	GISTENTRY     *entry = (GISTENTRY *) PG_GETARG_POINTER(0);
+	GiSTSPointKey *key = (GiSTSPointKey *) DatumGetPointer(entry->key);
+	GISTENTRY     *retval;
+	SPoint	      *p;
+
+	retval = palloc(sizeof(GISTENTRY));
+	p = palloc(sizeof(SPoint));
+
+	p->lat = key->lat;
+	p->lng = key->lng;
+	gistentryinit(*retval, PointerGetDatum(p), entry->rel,
+											entry->page, entry->offset, false);
+	PG_RETURN_POINTER(retval);
 }
 
 Datum

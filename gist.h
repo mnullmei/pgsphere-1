@@ -155,5 +155,6 @@ Datum	g_spoint3_consistent(PG_FUNCTION_ARGS);
 Datum	g_spoint3_penalty(PG_FUNCTION_ARGS);
 Datum	g_spoint3_picksplit(PG_FUNCTION_ARGS);
 Datum	g_spoint3_distance(PG_FUNCTION_ARGS);
+Datum	g_spoint3_fetch(PG_FUNCTION_ARGS);
 
 #endif

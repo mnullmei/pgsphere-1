@@ -9,18 +9,20 @@ DATA_built  = pg_sphere--1.0.sql
 DOCS        = README.pg_sphere COPYRIGHT.pg_sphere
 REGRESS     = init tables points euler circle line ellipse poly path box index \
 	      contains_ops contains_ops_compat bounding_box_gist gnomo healpix
+REGRESS_9_5 = index_9.5
 
 SHLIB_LINK += -lchealpix
 
 EXTRA_CLEAN = pg_sphere--1.0.sql $(PGS_SQL) 
 
-CRUSH_TESTS  = init_extended circle_extended 
+CRUSH_TESTS = init_extended circle_extended 
 
 # order of sql files is important
-PGS_SQL    =  pgs_types.sql pgs_point.sql pgs_euler.sql pgs_circle.sql \
+PGS_SQL     = pgs_types.sql pgs_point.sql pgs_euler.sql pgs_circle.sql \
    pgs_line.sql pgs_ellipse.sql pgs_polygon.sql pgs_path.sql \
    pgs_box.sql pgs_contains_ops.sql pgs_contains_ops_compat.sql \
    pgs_gist.sql gnomo.sql healpix.sql
+PGS_SQL_9_5 = pgs_9.5.sql
 
 ifdef USE_PGXS
   ifndef PG_CONFIG
@@ -34,6 +36,14 @@ else
   PG_CONFIG := $(top_builddir)/src/bin/pg_config/pg_config
   include $(top_builddir)/src/Makefile.global
   include $(top_srcdir)/contrib/contrib-global.mk
+endif
+
+pg_version := $(word 2,$(shell $(PG_CONFIG) --version))
+pg_version_9_5_plus = $(if $(filter-out 9.1% 9.2% 9.3% 9.4%,$(pg_version)),y,n)
+
+ifeq ($(pg_version_9_5_plus),y)
+	REGRESS += $(REGRESS_9_5)
+	PGS_SQL += $(PGS_SQL_9_5)
 endif
 
 crushtest: REGRESS += $(CRUSH_TESTS)

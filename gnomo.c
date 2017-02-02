@@ -4,6 +4,7 @@
 #include <utils/geo_decls.h>  /* Point */
 
 #include <point.h> /* SPoint from pgsphere */
+#include <gnomo.h>
 
 #include <math.h>
 

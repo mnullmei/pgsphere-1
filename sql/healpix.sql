@@ -2832,3 +2832,35 @@ select npix2nside(54043195528445951);
 select npix2nside(216172782113783807);
 select npix2nside(864691128455135231);
 select npix2nside(3458764513820540929);
+
+select centre_of_healpix_ring(1, 18471);
+select centre_of_healpix_nest(6, -0);
+select centre_of_healpix_ring(6, -1);
+select centre_of_healpix_nest(6, -49151);
+select centre_of_healpix_ring(6, 49151);
+select centre_of_healpix_ring(6, 49152);
+select centre_of_healpix_nest(6, 49153);
+
+-- examples taken from Figure 4 of Healpix article (page 764)
+select healpix_convert_nest(1, 2, 111);
+select healpix_convert_nest(1, 2, 91);
+select healpix_convert_nest(2, 1, 31);
+select healpix_convert_nest(1, 2, 123);
+select healpix_convert_ring(1, 2, 123);
+select healpix_convert_nest(1, 2, 124);
+select healpix_convert_nest(1, 2, 122);
+select healpix_convert_ring(1, 2, 122);
+select healpix_convert_ring(2, 1, 46);
+select healpix_convert_nest(2, 1, 46);
+select healpix_convert_ring(2, 1, 42);
+select nest2ring(1, 11);
+select nest2ring(1, 19);
+select nest2ring(2, 87);
+select nest2ring(2, 177);
+select nest2ring(2, 0);
+select ring2nest(1, 21);
+select ring2nest(1, 3);
+select ring2nest(1, 17);
+select ring2nest(2, 117);
+select ring2nest(2, 103);
+select ring2nest(2, 186);

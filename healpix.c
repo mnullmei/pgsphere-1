@@ -8,7 +8,10 @@
 #include <chealpix.h>
 #include <math.h>
 
-PG_FUNCTION_INFO_V1(healpix_convert);
+PG_FUNCTION_INFO_V1(pg_nest2ring);
+PG_FUNCTION_INFO_V1(pg_ring2nest);
+PG_FUNCTION_INFO_V1(healpix_convert_nest);
+PG_FUNCTION_INFO_V1(healpix_convert_ring);
 PG_FUNCTION_INFO_V1(pg_nside2order);
 PG_FUNCTION_INFO_V1(pg_order2nside);
 PG_FUNCTION_INFO_V1(pg_nside2npix);
@@ -65,7 +68,7 @@ static void check_order(int order)
 	if (order_invalid(order))
 		ereport(ERROR,
 				(errcode(ERRCODE_NUMERIC_VALUE_OUT_OF_RANGE),
-				 errmsg("Healpix order out of valid range [0..29]")));
+				 errmsg("Healpix level out of valid range [0..29]")));
 }
 
 static void check_index(int order, hpint64 i)
@@ -75,10 +78,10 @@ static void check_index(int order, hpint64 i)
 		ereport(ERROR,
 				(errcode(ERRCODE_NUMERIC_VALUE_OUT_OF_RANGE),
 				 errmsg("Healpix index out of range"),
-				 errhint("Use nside2npix(order2nside(order)) to calculate"
+				 errhint("Use nside2npix(order2nside(level)) to calculate"
 		 					" the respective limit\nfor Healpix indices.\n"
-							"Use healpix_convert(idx, from_order, to_order)"
-							" to move indices to another order.")));
+							"Use healpix_convert(idx, from_level, to_level)"
+							" to move indices to another level.")));
 }
 
 static void check_nside(hpint64 nside)
@@ -88,22 +91,61 @@ static void check_nside(hpint64 nside)
 				(errcode(ERRCODE_NUMERIC_VALUE_OUT_OF_RANGE),
 				 errmsg("nside value invalid"),
 				 errhint("Valid nside values are only"
-							" order2nside(order),"
-							" for order in [0..29].")));
+							" order2nside(level),"
+							" for level in [0..29].")));
 }
 
-Datum healpix_convert(PG_FUNCTION_ARGS)
+Datum pg_nest2ring(PG_FUNCTION_ARGS)
 {
-	hpint64 idx		 = PG_GETARG_INT64(0);
-	int32 from_order = PG_GETARG_INT32(1);
-	int32 to_order	 = PG_GETARG_INT32(2);
+	int32 order  = PG_GETARG_INT32(0);
+	hpint64 nest = PG_GETARG_INT64(1);
+	hpint64 ring;
+	check_index(order, nest);
+	nest2ring64(c_nside(order), nest, &ring);
+	PG_RETURN_INT64(ring);
+}
+
+Datum pg_ring2nest(PG_FUNCTION_ARGS)
+{
+	int32 order  = PG_GETARG_INT32(0);
+	hpint64 ring = PG_GETARG_INT64(1);
+	hpint64 nest;
+	check_index(order, ring);
+	ring2nest64(c_nside(order), ring, &nest);
+	PG_RETURN_INT64(nest);
+}
+
+static hpint64 c_healpix_convert_nest(hpint64 idx, int32 from_order,
+													int32 to_order)
+{
 	check_order(to_order);
-	check_index(from_order, idx);
 	if (from_order > to_order)
 		idx >>= (from_order - to_order) * 2;
 	else
 		idx <<= (to_order - from_order) * 2;
-	PG_RETURN_INT64(idx);
+	return idx;
+}
+
+Datum healpix_convert_nest(PG_FUNCTION_ARGS)
+{
+	int32 to_order	 = PG_GETARG_INT32(0);
+	int32 from_order = PG_GETARG_INT32(1);
+	hpint64 nest	 = PG_GETARG_INT64(2);
+	check_index(from_order, nest);
+	PG_RETURN_INT64(c_healpix_convert_nest(nest, from_order, to_order));
+}
+
+Datum healpix_convert_ring(PG_FUNCTION_ARGS)
+{
+	int32 to_order	 = PG_GETARG_INT32(0);
+	int32 from_order = PG_GETARG_INT32(1);
+	hpint64 ring	 = PG_GETARG_INT64(2);
+	hpint64 nest;
+	check_index(from_order, ring);
+	ring2nest64(c_nside(from_order), ring, &nest);
+	nest = c_healpix_convert_nest(nest, from_order, to_order);
+	nest2ring64(c_nside(to_order), nest, &ring);
+	PG_RETURN_INT64(ring);
 }
 
 Datum pg_nside2order(PG_FUNCTION_ARGS)
@@ -141,8 +183,8 @@ Datum pg_npix2nside(PG_FUNCTION_ARGS)
 				(errcode(ERRCODE_NUMERIC_VALUE_OUT_OF_RANGE),
 				 errmsg("npix value invalid"),
 				 errhint("Valid npix values are only"
-							" nside2npix(order2nside(order)),"
-							" for order in [0..29].")));
+							" nside2npix(order2nside(level)),"
+							" for level in [0..29].")));
 	PG_RETURN_INT64(nside);
 }
 

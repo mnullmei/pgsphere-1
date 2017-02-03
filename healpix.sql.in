@@ -1,11 +1,32 @@
 -- conversions to / from Healpix indexing
 
-CREATE OR REPLACE FUNCTION healpix_convert(bigint, integer, integer)
+CREATE OR REPLACE FUNCTION nest2ring(integer, bigint)
+RETURNS bigint
+AS 'MODULE_PATHNAME', 'pg_nest2ring'
+LANGUAGE C IMMUTABLE STRICT;
+COMMENT ON FUNCTION nest2ring(integer, bigint) IS
+'converts nested Healpix index to a ring Healpix index for the specified integer level (first argument)';
+
+CREATE OR REPLACE FUNCTION ring2nest(integer, bigint)
+RETURNS bigint
+AS 'MODULE_PATHNAME', 'pg_ring2nest'
+LANGUAGE C IMMUTABLE STRICT;
+COMMENT ON FUNCTION ring2nest(integer, bigint) IS
+'converts ringe Healpix index to a nested Healpix index for the specified integer level (first argument)';
+
+CREATE OR REPLACE FUNCTION healpix_convert_nest(integer, integer, bigint)
 RETURNS bigint
 AS 'MODULE_PATHNAME'
 LANGUAGE C IMMUTABLE STRICT;
-COMMENT ON FUNCTION healpix_convert(bigint, integer, integer) IS
-'converts Healpix index (first argument) from order of second argument to order of third argument';
+COMMENT ON FUNCTION healpix_convert_nest(integer, integer, bigint) IS
+'converts nested Healpix index (last argument) from level of second argument to level of first argument';
+
+CREATE OR REPLACE FUNCTION healpix_convert_ring(integer, integer, bigint)
+RETURNS bigint
+AS 'MODULE_PATHNAME'
+LANGUAGE C IMMUTABLE STRICT;
+COMMENT ON FUNCTION healpix_convert_ring(integer, integer, bigint) IS
+'converts ring Healpix index (last argument) from level of second argument to level of first argument';
 
 CREATE OR REPLACE FUNCTION nside2order(bigint)
 RETURNS integer

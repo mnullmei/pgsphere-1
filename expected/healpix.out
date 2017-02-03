@@ -16386,292 +16386,462 @@ select centre_of_healpix_nest(1, 10);
 
 select nside2order(-1);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(-2);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(0);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(-15);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(3);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(5);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(7);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(9);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(15);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(17);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(31);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(65);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(129);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(255);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(519);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(1022);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(2049);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(4095);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(8191);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(16387);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(32767);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(65535);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(131071);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(262145);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(524289);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(1048546);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(2093151);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(4194303);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(8388609);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(16777217);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(33554430);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(67108860);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(134217722);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(268435457);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2order(536870911);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select order2nside(-1);
-ERROR:  Healpix order out of valid range [0..29]
+ERROR:  Healpix level out of valid range [0..29]
 select order2nside(30);
-ERROR:  Healpix order out of valid range [0..29]
+ERROR:  Healpix level out of valid range [0..29]
 select order2nside(31);
-ERROR:  Healpix order out of valid range [0..29]
+ERROR:  Healpix level out of valid range [0..29]
 select order2nside(-29);
-ERROR:  Healpix order out of valid range [0..29]
+ERROR:  Healpix level out of valid range [0..29]
 select nside2npix(-1);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(3);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(5);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(11);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(17);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(33);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(63);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(129);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(257);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(511);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(1023);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(2049);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(4097);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(8191);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(16383);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(32769);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(65535);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(131071);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(262104);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(524208);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(1048076);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(2097052);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(4194301);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(8388607);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(16777217);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(33554431);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(67108865);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(134217727);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(268430456);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select nside2npix(536870913);
 ERROR:  nside value invalid
-HINT:  Valid nside values are only order2nside(order), for order in [0..29].
+HINT:  Valid nside values are only order2nside(level), for level in [0..29].
 select npix2nside(-12);
 ERROR:  npix value must be at least 12
 select npix2nside(49);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(-2192);
 ERROR:  npix value must be at least 12
 select npix2nside(767);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(3071);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(12280);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(49150);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(196607);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(786431);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(3145723);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(12582911);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(50331647);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(201326591);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(805306369);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(3221225473);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(12884901808);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(51539607551);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(206158430209);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(824633720831);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(3298534883327);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(13194139533311);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(52776558133247);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(211106232532991);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(844424930131969);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(3377699720527873);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(13510798882111487);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(54043195528445951);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(216172782113783807);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(864691128455135231);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
 select npix2nside(3458764513820540929);
 ERROR:  npix value invalid
-HINT:  Valid npix values are only nside2npix(order2nside(order)), for order in [0..29].
+HINT:  Valid npix values are only nside2npix(order2nside(level)), for level in [0..29].
+select centre_of_healpix_ring(1, 18471);
+ERROR:  Healpix index out of range
+HINT:  Use nside2npix(order2nside(level)) to calculate the respective limit
+for Healpix indices.
+Use healpix_convert(idx, from_level, to_level) to move indices to another level.
+select centre_of_healpix_nest(6, -0);
+    centre_of_healpix_nest    
+------------------------------
+ (0.785398163 , 0.0104168551)
+(1 row)
+
+select centre_of_healpix_ring(6, -1);
+ERROR:  Healpix index out of range
+HINT:  Use nside2npix(order2nside(level)) to calculate the respective limit
+for Healpix indices.
+Use healpix_convert(idx, from_level, to_level) to move indices to another level.
+select centre_of_healpix_nest(6, -49151);
+ERROR:  Healpix index out of range
+HINT:  Use nside2npix(order2nside(level)) to calculate the respective limit
+for Healpix indices.
+Use healpix_convert(idx, from_level, to_level) to move indices to another level.
+select centre_of_healpix_ring(6, 49151);
+   centre_of_healpix_ring   
+----------------------------
+ (5.49778714 , -1.55803848)
+(1 row)
+
+select centre_of_healpix_ring(6, 49152);
+ERROR:  Healpix index out of range
+HINT:  Use nside2npix(order2nside(level)) to calculate the respective limit
+for Healpix indices.
+Use healpix_convert(idx, from_level, to_level) to move indices to another level.
+select centre_of_healpix_nest(6, 49153);
+ERROR:  Healpix index out of range
+HINT:  Use nside2npix(order2nside(level)) to calculate the respective limit
+for Healpix indices.
+Use healpix_convert(idx, from_level, to_level) to move indices to another level.
+-- examples taken from Figure 4 of Healpix article (page 764)
+select healpix_convert_nest(1, 2, 111);
+ healpix_convert_nest 
+----------------------
+                   27
+(1 row)
+
+select healpix_convert_nest(1, 2, 91);
+ healpix_convert_nest 
+----------------------
+                   22
+(1 row)
+
+select healpix_convert_nest(2, 1, 31);
+ healpix_convert_nest 
+----------------------
+                  124
+(1 row)
+
+select healpix_convert_nest(1, 2, 123);
+ healpix_convert_nest 
+----------------------
+                   30
+(1 row)
+
+select healpix_convert_ring(1, 2, 123);
+ healpix_convert_ring 
+----------------------
+                   30
+(1 row)
+
+select healpix_convert_nest(1, 2, 124);
+ healpix_convert_nest 
+----------------------
+                   31
+(1 row)
+
+select healpix_convert_nest(1, 2, 122);
+ healpix_convert_nest 
+----------------------
+                   30
+(1 row)
+
+select healpix_convert_ring(1, 2, 122);
+ healpix_convert_ring 
+----------------------
+                   29
+(1 row)
+
+select healpix_convert_ring(2, 1, 46);
+ healpix_convert_ring 
+----------------------
+                  190
+(1 row)
+
+select healpix_convert_nest(2, 1, 46);
+ healpix_convert_nest 
+----------------------
+                  184
+(1 row)
+
+select healpix_convert_ring(2, 1, 42);
+ healpix_convert_ring 
+----------------------
+                  177
+(1 row)
+
+select nest2ring(1, 11);
+ nest2ring 
+-----------
+         2
+(1 row)
+
+select nest2ring(1, 19);
+ nest2ring 
+-----------
+        12
+(1 row)
+
+select nest2ring(2, 87);
+ nest2ring 
+-----------
+        77
+(1 row)
+
+select nest2ring(2, 177);
+ nest2ring 
+-----------
+       187
+(1 row)
+
+select nest2ring(2, 0);
+ nest2ring 
+-----------
+        74
+(1 row)
+
+select ring2nest(1, 21);
+ ring2nest 
+-----------
+        22
+(1 row)
+
+select ring2nest(1, 3);
+ ring2nest 
+-----------
+        15
+(1 row)
+
+select ring2nest(1, 17);
+ ring2nest 
+-----------
+         8
+(1 row)
+
+select ring2nest(2, 117);
+ ring2nest 
+-----------
+       116
+(1 row)
+
+select ring2nest(2, 103);
+ ring2nest 
+-----------
+        73
+(1 row)
+
+select ring2nest(2, 186);
+ ring2nest 
+-----------
+       178
+(1 row)
+

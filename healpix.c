@@ -136,7 +136,7 @@ Datum pg_npix2nside(PG_FUNCTION_ARGS)
 				(errcode(ERRCODE_NUMERIC_VALUE_OUT_OF_RANGE),
 				 errmsg("npix value must be at least 12")));
 	nside = floor(sqrt(npix * (1.0 / 12)) + 0.5);
-	if (nside_invalid(nside))
+	if (nside_invalid(nside) || c_nside2npix(nside) != npix)
 		ereport(ERROR,
 				(errcode(ERRCODE_NUMERIC_VALUE_OUT_OF_RANGE),
 				 errmsg("npix value invalid"),

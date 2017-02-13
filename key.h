@@ -13,7 +13,12 @@
  */
 #define MAXCVALUE ( (1 << (8 * BPCKSIZE - 2)) - 1 )
 
-typedef struct /* dummy definition to get LEAF_KEY_SIZE always right */
+
+/* Dummy definition to get LEAF_KEY_SIZE always right -- we rather do not dare
+ * to mess around with offsetof() inside 'union {};'
+ */
+
+typedef struct
 {
 	int32			vl_len_;
 	union

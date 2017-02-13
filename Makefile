@@ -24,7 +24,8 @@ CRUSH_TESTS = init_extended circle_extended
 PGS_SQL     = pgs_types.sql pgs_point.sql pgs_euler.sql pgs_circle.sql \
    pgs_line.sql pgs_ellipse.sql pgs_polygon.sql pgs_path.sql \
    pgs_box.sql pgs_contains_ops.sql pgs_contains_ops_compat.sql \
-   pgs_gist.sql gnomo.sql healpix.sql pgs_gist_spoint3.sql
+   pgs_gist.sql gnomo.sql pgs_gist_pointkey.sql \
+   healpix.sql pgs_gist_spoint3.sql
 PGS_SQL_9_5 = pgs_9.5.sql # experimental for spoint3
 
 ifdef USE_PGXS
@@ -63,11 +64,14 @@ UPGRADE_UNP_COMMON =  pgs_types.sql pgs_point.sql pgs_euler.sql pgs_circle.sql \
     pgs_box.sql pgs_contains_ops_compat.sql pgs_gist.sql \
 	pgs_gist_contains_ops.sql contains-ops-fixes-1.sql
 
+AUGMENT_UNP_COMMON = pgs_contains_ops.sql gnomo.sql
+
 # for vanilla 1.1.1 users
-AUGMENT_UNP_111 = pgs_contains_ops.sql gnomo.sql
+AUGMENT_UNP_111 = $(AUGMENT_UNP_COMMON) pgs_gist_pointkey.sql
 
 # for 1.1.2+ users: 'from unpacked_1.1.2plus'
-UPGRADE_UNP_FOR_112plus = $(AUGMENT_UNP_111) pgs_gist_drop_spoint2.sql.in
+AUGMENT_UNP_FOR_112plus = $(AUGMENT_UNP_COMMON)
+UPGRADE_UNP_FOR_112plus = pgs_gist_pointkey.sql pgs_gist_drop_spoint2.sql.in
 
 # for "alter extension":
 

@@ -1,10 +1,6 @@
 ALTER EXTENSION pg_sphere ADD FUNCTION spherekey_in(CSTRING);
 ALTER EXTENSION pg_sphere ADD FUNCTION spherekey_out(spherekey);
-ALTER EXTENSION pg_sphere ADD FUNCTION pointkey_in(CSTRING);
-ALTER EXTENSION pg_sphere ADD FUNCTION pointkey_out(pointkey);
-ALTER EXTENSION pg_sphere ADD FUNCTION pointkey_volume(pointkey);
-ALTER EXTENSION pg_sphere ADD FUNCTION pointkey_area(pointkey);
-ALTER EXTENSION pg_sphere ADD FUNCTION pointkey_perimeter(pointkey);
+ALTER EXTENSION pg_sphere ADD TYPE spherekey;
 ALTER EXTENSION pg_sphere ADD FUNCTION g_spherekey_decompress(internal);
 ALTER EXTENSION pg_sphere ADD FUNCTION g_spherekey_union(bytea, internal);
 ALTER EXTENSION pg_sphere ADD FUNCTION g_spherekey_picksplit(internal, internal);

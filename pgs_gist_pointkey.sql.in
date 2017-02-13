@@ -33,6 +33,6 @@ CREATE TYPE pointkey (
    input = pointkey_in,
    output = pointkey_out,
    internallength = -1,
-   ALIGNMENT = int4,
+   ALIGNMENT = double,
    STORAGE = PLAIN
 );

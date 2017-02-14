@@ -16,6 +16,9 @@ REGRESS     = init tables points euler circle line ellipse poly path box index \
 			  contains_ops contains_ops_compat bounding_box_gist gnomo healpix
 REGRESS_9_5 = index_9.5 # experimental for spoint3
 
+TESTS       = init_test tables points euler circle line ellipse poly path box index \
+			  contains_ops contains_ops_compat bounding_box_gist gnomo healpix
+
 SHLIB_LINK += -lchealpix
 
 EXTRA_CLEAN = $(PGS_SQL)
@@ -50,11 +53,26 @@ pg_version_9_5_plus = $(if $(filter-out 9.1% 9.2% 9.3% 9.4%,$(pg_version)),y,n)
 #
 ifeq ($(pg_version_9_5_plus),y)
 	REGRESS += $(REGRESS_9_5)
+	TESTS   += $(REGRESS_9_5)
 	PGS_SQL += $(PGS_SQL_9_5)
 endif
 
 crushtest: REGRESS += $(CRUSH_TESTS)
 crushtest: installcheck
+
+
+ifeq ($(pg_version_9_5_plus),y)
+        PGS_TMP_DIR = --temp-instance=tmp_check
+else
+        PGS_TMP_DIR = --temp-install=tmp_check --top-builddir=test_top_build_dir
+endif
+
+test: pg_sphere.test.sql sql/init_test.sql
+	$(pg_regress_installcheck) $(PGS_TMP_DIR) $(REGRESS_OPTS) $(TESTS)
+
+pg_sphere.test.sql: pg_sphere--1.1.5beta0gavo.sql $(shlib)
+	tail -n+3 $< | sed 's,MODULE_PATHNAME,$(realpath $(shlib)),g' >$@
+
 
 pg_sphere--1.1.5beta0gavo.sql: $(addsuffix .in, $(PGS_SQL))
 	cat $^ > $@

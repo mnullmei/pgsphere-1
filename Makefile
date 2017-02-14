@@ -6,12 +6,12 @@ OBJS       = sscan.o sparse.o sbuffer.o vector3d.o point.o \
 
 EXTENSION   = pg_sphere
 DATA_built  = pg_sphere--1.1.5beta0gavo.sql \
-				pg_sphere--unpackaged--1.1.5beta0gavo.sql \
-				pg_sphere--unpackaged_gavo--1.1.5beta0gavo.sql \
-				pg_sphere--1.0--1.1.5beta0gavo.sql
+			  pg_sphere--unpackaged--1.1.5beta0gavo.sql \
+			  pg_sphere--unpackaged_gavo--1.1.5beta0gavo.sql \
+			  pg_sphere--1.0--1.1.5beta0gavo.sql
 DOCS        = README.pg_sphere COPYRIGHT.pg_sphere
 REGRESS     = init tables points euler circle line ellipse poly path box index \
-	      contains_ops contains_ops_compat bounding_box_gist gnomo healpix
+			  contains_ops contains_ops_compat bounding_box_gist gnomo healpix
 REGRESS_9_5 = index_9.5 # experimental for spoint3
 
 SHLIB_LINK += -lchealpix

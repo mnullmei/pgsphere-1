@@ -81,11 +81,12 @@ UPGRADE_UNP_FOR_112plus = pgs_gist_pointkey.sql pgs_gist_drop_spoint2.sql.in
 #    "ALTER EXTENSION pg_sphere UPDATE TO '1.1.5_from_before_2016-02-07';"
 # if required.
 #
-# default 1.0 -> 1.1.5
+# default 1.0 (after 2016-02-07) -> 1.1.5
 UPGRADE_1_0_PRE_xxxxxx = contains-ops-fixes-2.sql
 # '1.1.5_from_2015-08-31'
+AUGMENT_1_0_PRE_AAF2D5 = pgs_contains_ops.sql gnomo.sql
 UPGRADE_1_0_PRE_AAF2D5 = contains-ops-fixes-1.sql pgs_gist_drop_spoint2.sql.in \
-						pgs_gist_contains_ops.sql pgs_contains_ops.sql gnomo.sql
+						pgs_gist_contains_ops.sql
 
 # vanilla 'create from unpackaged' must assume 1.1.1
 # ...
@@ -108,8 +109,8 @@ UPGRADE_GAVO_111 = $(UPGRADE_UNP_COMMON)
 # add new Healpix functions and experimental spoint3
 AUGMENT_FROM_GAVO = healpix.sql pgs_gist_spoint3.sql
 
-AUGMENT_UNP_115B0G = $(AUGMENT_FROM_GAVO)
-UPGRADE_UNP_115B0G = $(UPGRADE_UNP_COMMON) gnomo.sql healpix_old.sql
+AUGMENT_UNP_115B0G = $(AUGMENT_UNP_111) $(AUGMENT_FROM_GAVO)
+UPGRADE_UNP_115B0G = $(UPGRADE_UNP_COMMON)
 
 AUGMENT_1_0_115B0G = $(AUGMENT_FROM_GAVO)
 UPGRADE_1_0_115B0G = contains-ops-fixes-2.sql pgs_gist_drop_spoint2.sql

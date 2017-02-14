@@ -5,7 +5,8 @@ OBJS       = sscan.o sparse.o sbuffer.o vector3d.o point.o \
              gnomo.o healpix.o
 
 EXTENSION   = pg_sphere
-DATA_built  = pg_sphere--1.1.5beta0gavo.sql \
+RELEASE_SQL = $(EXTENSION)--1.1.5beta0gavo.sql
+DATA_built  = $(RELEASE_SQL) \
 			  pg_sphere--unpackaged--1.1.5beta0gavo.sql \
 			  pg_sphere--unpackaged_gavo--1.1.5beta0gavo.sql \
 			  pg_sphere--1.0--1.0_gavo.sql \
@@ -70,11 +71,11 @@ endif
 test: pg_sphere.test.sql sql/init_test.sql
 	$(pg_regress_installcheck) $(PGS_TMP_DIR) $(REGRESS_OPTS) $(TESTS)
 
-pg_sphere.test.sql: pg_sphere--1.1.5beta0gavo.sql $(shlib)
+pg_sphere.test.sql: $(RELEASE_SQL) $(shlib)
 	tail -n+3 $< | sed 's,MODULE_PATHNAME,$(realpath $(shlib)),g' >$@
 
 
-pg_sphere--1.1.5beta0gavo.sql: $(addsuffix .in, $(PGS_SQL))
+$(RELEASE_SQL): $(addsuffix .in, $(RELEASE_SQL) $(PGS_SQL))
 	cat $^ > $@
 
 # for "create extension from unpacked*":

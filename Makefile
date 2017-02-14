@@ -8,7 +8,9 @@ EXTENSION   = pg_sphere
 DATA_built  = pg_sphere--1.1.5beta0gavo.sql \
 			  pg_sphere--unpackaged--1.1.5beta0gavo.sql \
 			  pg_sphere--unpackaged_gavo--1.1.5beta0gavo.sql \
-			  pg_sphere--1.0--1.1.5beta0gavo.sql
+			  pg_sphere--1.0--1.0_gavo.sql \
+			  pg_sphere--1.0_gavo--1.1.5beta0gavo.sql
+
 DOCS        = README.pg_sphere COPYRIGHT.pg_sphere
 REGRESS     = init tables points euler circle line ellipse poly path box index \
 			  contains_ops contains_ops_compat bounding_box_gist gnomo healpix
@@ -125,7 +127,9 @@ pg_sphere--unpackaged_gavo--1.1.5beta0gavo.sql: $(addsuffix .in, \
 	cat upgrade_scripts/$@.in $^ > $@
 
 # test installation B
-pg_sphere--1.0--1.1.5beta0gavo.sql: $(addsuffix .in, \
+pg_sphere--1.0--1.0_gavo.sql: # dummy upgrade to allow for descriptive names
+	cat upgrade_scripts/$@.in > $@
+pg_sphere--1.0_gavo--1.1.5beta0gavo.sql: $(addsuffix .in, \
 		$(AUGMENT_1_0_115B0G) \
 		$(addprefix upgrade_scripts/, $(UPGRADE_1_0_115B0G)))
 	cat upgrade_scripts/$@.in $^ > $@

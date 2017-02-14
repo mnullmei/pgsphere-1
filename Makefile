@@ -5,12 +5,12 @@ OBJS       = sscan.o sparse.o sbuffer.o vector3d.o point.o \
              gnomo.o
 
 EXTENSION   = pg_sphere
-DATA_built  = pg_sphere--1.0.sql
+DATA_built  = pg_sphere--1.1.5.sql
 DOCS        = README.pg_sphere COPYRIGHT.pg_sphere
 REGRESS     = init tables points euler circle line ellipse poly path box index \
               contains_ops contains_ops_compat bounding_box_gist gnomo
 
-EXTRA_CLEAN = pg_sphere--1.0.sql $(PGS_SQL) 
+EXTRA_CLEAN = $(DATA_built)
 
 CRUSH_TESTS  = init_extended circle_extended 
 
@@ -37,7 +37,7 @@ endif
 crushtest: REGRESS += $(CRUSH_TESTS)
 crushtest: installcheck
 
-pg_sphere--1.0.sql: $(addsuffix .in, $(PGS_SQL))
+pg_sphere--1.1.5.sql: $(addsuffix .in, $(PGS_SQL))
 	cat $^ > $@
 
 sscan.o : sparse.c

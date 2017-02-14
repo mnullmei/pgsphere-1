@@ -21,7 +21,7 @@ TESTS       = init_test tables points euler circle line ellipse poly path box in
 
 SHLIB_LINK += -lchealpix
 
-EXTRA_CLEAN = $(PGS_SQL)
+EXTRA_CLEAN = $(PGS_SQL) pg_sphere.test.sql
 
 CRUSH_TESTS = init_extended circle_extended 
 

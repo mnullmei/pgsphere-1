@@ -20,7 +20,7 @@
 
 typedef struct
 {
-	int32			vl_len_;
+	char			vl_len_[4];
 	union
 	{
 		struct /* the compiler will probably insert 4 bytes of padding here */
@@ -33,7 +33,7 @@ typedef struct
 
 typedef struct
 {
-	int32			vl_len_;
+	char			vl_len_[4];
 	union
 	{
 		struct /* the compiler will probably insert 4 bytes of padding here */

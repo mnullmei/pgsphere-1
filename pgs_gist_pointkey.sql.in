@@ -32,7 +32,7 @@ CREATE FUNCTION pointkey_perimeter(pointkey)
 CREATE TYPE pointkey (
    input = pointkey_in,
    output = pointkey_out,
-   internallength = -1,
+   internallength = VARIABLE,
    ALIGNMENT = int4,
    STORAGE = PLAIN
 );

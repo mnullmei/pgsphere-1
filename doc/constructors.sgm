@@ -375,7 +375,7 @@
 
         <sect2 id="contr.sbox">
           <title>
-            Coordinates range
+            Coordinate range
           </title>
           <para>
             The function
@@ -391,7 +391,7 @@
             creates an <type>sbox</type> object with its first parameter
             <parameter>south_west</parameter> as the southwest edge and its
             second parameter <parameter>northeast</parameter> as the
-            north-east edge of the coordinates range.
+            north-east edge of the coordinate range.
           </para>
           <example>
             <title>Create a spherical box using edges</title>
@@ -400,7 +400,7 @@
               longitude.
             </simpara>
             <programlisting>
-<![CDATA[sql> SELECT sbox ( spoint '(0d,0d),(10d,10d)' );]]>
+<![CDATA[sql> SELECT sbox(spoint '(0d, 0d)', spoint '(10d, 10d)');]]>
             </programlisting>
           </example>
         </sect2>

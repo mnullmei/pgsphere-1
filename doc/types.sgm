@@ -207,7 +207,7 @@
                 </listitem>
                 <listitem>
                     <para>
-                        spherical coordinates transformations 
+                        spherical coordinate transformations 
                     </para>
                 </listitem>
             </itemizedlist>
@@ -617,7 +617,7 @@ i             syntax is a somewhat complex.
 
         <sect2 id="dt.sbox">
             <title>
-                Coordinates range
+                Coordinate range
             </title>
             <para>
               <mediaobject>
@@ -628,7 +628,7 @@ i             syntax is a somewhat complex.
             </para>
             <para>
               A spherical box is a
-              coordinates range. Hence, you can select objects within a
+              coordinate range. Hence, you can select objects within a
               longitude range and latitude range. The box is represented
               using two spherical points: the southwest
               (<parameter>pos_sw</parameter>) and the northeast
@@ -672,7 +672,7 @@ i             syntax is a somewhat complex.
               </programlisting>
             </example>
             <example>
-              <title>A simple coordinates range</title>
+              <title>A simple coordinate range</title>
               <simpara>
                 A coordinate range between -10&deg; and +10&deg; in latitude
                 and 350&deg; and 10&deg; in longitude.

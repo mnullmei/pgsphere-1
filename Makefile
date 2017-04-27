@@ -64,4 +64,6 @@ endif
 
 dist : clean sparse.c sscan.c
 	find . -name '*~' -type f -exec rm {} \;
-	cd .. && tar --transform s/$(SRC_DIR)/pgsphere-$(PGSPHERE_VERSION)/ --exclude CVS -czf pgsphere-$(PGSPHERE_VERSION).tar.gz $(SRC_DIR) && cd -
+	cd .. && tar --transform s/$(SRC_DIR)/pgsphere-$(PGSPHERE_VERSION)/ \
+		--exclude .git -czf pgsphere-$(PGSPHERE_VERSION).tar.gz $(SRC_DIR) \
+		&& cd -
